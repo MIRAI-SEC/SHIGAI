@@ -40,7 +40,7 @@ pub fn verificar_log() -> Result<(), Box<dyn Error>> {
         "conhost.exe", "SearchIndexer.exe", "SearchProtocolHost.exe",
         "WINWORD.EXE", "EXCEL.EXE", "POWERPNT.EXE",
         "devenv.exe",
-        "shigai.exe"
+        "shigai-sysmon.exe"
     ].iter().cloned().collect();
 
     // Faz com que os registros do log sejam processados em paralelo
