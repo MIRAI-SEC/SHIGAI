@@ -1,24 +1,42 @@
 # SHIGAI - Ransomware-Focused EDR
 
-SHIGAI is an open-source GitHub project that aims to provide an advanced Endpoint Detection and Response (EDR) solution specifically designed to combat ransomware attacks. It leverages a combination of kernel-level driver and mini-filter to intercept and monitor file system activities, enabling real-time analysis and detection of ransomware behaviors.
+SHIGAI is an open-source GitHub project that aims to provide an simple Endpoint Detection and Response solution specifically designed to combat ransomware attacks. It leverages a combination of windows proprietary driver called Sysmon which monitor file precesses activities, enabling real-time analysis and detection of ransomware behaviors.
 
 ## Key Features
 
-- **Kernel-Level Driver**: SHIGAI utilizes a robust kernel-level driver to gain deep visibility into file system operations, enabling efficient interception and monitoring of file-related activities.
-- **Mini-Filter**: The mini-filter component enhances the capabilities of the kernel driver by intercepting file I/O requests, allowing for real-time analysis and decision-making based on behavior patterns.
-- **Machine Learning Analysis**: SHIGAI incorporates a machine learning model that operates on a separate machine, designed to detect and identify anomalous behaviors associated with ransomware attacks.
-- **Behavioral Anomaly Detection**: By employing machine learning algorithms, SHIGAI is capable of analyzing file system activities and detecting deviations from normal behavior, helping identify potential ransomware activities.
-- **Real-Time Alerting**: When suspicious or malicious behavior is detected, SHIGAI promptly generates alerts, allowing security teams to respond swiftly and mitigate potential damage.
+** Sysmon (System Monitor) is a Windows system service and device driver that provides advanced system activity logging. Developed by Microsoft, Sysmon is part of the Windows Sysinternals suite of utilities. It is designed to help system administrators, security professionals, and incident responders track and monitor detailed system activity to enhance security and aid in the detection of malicious behavior.
+
+Here are some of the key functionalities and features of Sysmon:
+
+Event Logging: Sysmon captures and logs various events and activities occurring on a Windows system. These events are recorded in the Windows Event Log, specifically under the "Microsoft-Windows-Sysmon" event source.
+
+Detailed Information: Sysmon provides detailed information about processes, network connections, file creation, registry modifications, and more. This level of detail can be valuable for identifying suspicious or malicious activities.
+
+Rule Configuration: Sysmon allows users to configure custom rules to specify what events to log. This enables fine-grained control over which types of activities to monitor and record.
+
+Digital Signatures: Sysmon can verify the digital signatures of executable files to ensure they haven't been tampered with. It can log events related to unsigned or improperly signed executables.
+
+Network Connection Monitoring: It logs information about network connections, including source and destination IP addresses and port numbers. This can help in identifying network-based attacks and unusual communication patterns.
+
+Process Creation: Sysmon logs detailed information about process creation, including the parent process, command-line arguments, and the image (executable) file path. This is valuable for tracking the execution of potentially malicious processes.
+
+Registry Activity: Registry modifications, such as changes to keys and values, are recorded by Sysmon. This can be useful for detecting unauthorized changes to the Windows Registry.
+
+File Creation and Modification: Sysmon logs events related to file creation, deletion, and modification, including the file path and hash values. This can assist in identifying suspicious or unauthorized file changes.
+
+Event Filtering: Sysmon supports event filtering, allowing users to exclude specific events or event sources from being logged, which can help reduce noise in the logs.
+
+Integration with SIEM: Sysmon logs can be collected and forwarded to a Security Information and Event Management (SIEM) system, where they can be correlated with other security data for analysis and alerting.
+
+- **Behavioral Anomaly Detection**: By monitoring the Sysmon driver, SHIGAI is capable of analyzing file system activities and detecting deviations from normal behavior, helping to identify potential ransomware activities.
+- **Real-Time Alerting**: When suspicious or malicious behavior is detected in Sysmon , SHIGAI promptly generates alerts, allowing security teams to respond swiftly and mitigate potential damage.
 - **Scalability**: SHIGAI is designed to handle large-scale deployments, making it suitable for enterprise-level environments with a high volume of endpoints.
 - **Extensibility**: The project provides a flexible architecture that enables the addition of custom detection rules and integration with existing security solutions.
 
 ## How SHIGAI Works
 
-1. **Kernel-Level Monitoring**: SHIGAI's kernel-level driver monitors file system activities, including file creations, modifications, and deletions, as well as network-related events.
-2. **Mini-Filter Analysis**: The mini-filter intercepts file I/O requests and forwards them for analysis to the machine learning component.
-3. **Machine Learning Analysis**: The machine learning model operates on a separate machine, leveraging historical data and behavioral analysis to determine the likelihood of a file being associated with ransomware.
-4. **Behavioral Anomaly Detection**: SHIGAI compares the observed file behavior against learned patterns and identifies any anomalies or suspicious activities.
-5. **Real-Time Alerting**: When potential ransomware behavior is detected, SHIGAI generates alerts, providing security teams with actionable information to investigate and mitigate the threat.
+1. **Behavioral Anomaly Detection**: SHIGAI compares the observed file behavior against learned patterns and identifies any anomalies or suspicious activities.
+2. **Real-Time Alerting**: When potential ransomware behavior is detected, SHIGAI generates alerts, providing security teams with actionable information to investigate and mitigate the threat.
 
 ## Contribution Guidelines
 
